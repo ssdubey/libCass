@@ -1,0 +1,12 @@
+(rule
+ (deps (source_tree cpp-driver))
+ (targets dlllibcassandra_stubs.so)
+ (action (progn
+          
+          (copy cpp-driver/libcassandra.so dlllibcassandra_stubs.so)
+          )))
+(library
+(name libcassandra)
+(self_build_stubs_archive (libcassandra))
+(libraries ctypes posix-types ctypes.foreign))
+

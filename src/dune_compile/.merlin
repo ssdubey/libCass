@@ -1,0 +1,18 @@
+EXCLUDE_QUERY_DIR
+B /home/shashank/.opam/switch2/lib/bytes
+B /home/shashank/.opam/switch2/lib/ctypes
+B /home/shashank/.opam/switch2/lib/integers
+B /home/shashank/.opam/switch2/lib/ocaml
+B /home/shashank/.opam/switch2/lib/ocaml/threads
+B /home/shashank/.opam/switch2/lib/posix-types
+B ../../_build/default/lib/.libcassandra.objs/byte
+B ../../_build/default/src/dune_compile/.cass.eobjs/byte
+S /home/shashank/.opam/switch2/lib/bytes
+S /home/shashank/.opam/switch2/lib/ctypes
+S /home/shashank/.opam/switch2/lib/integers
+S /home/shashank/.opam/switch2/lib/ocaml
+S /home/shashank/.opam/switch2/lib/ocaml/threads
+S /home/shashank/.opam/switch2/lib/posix-types
+S ../../lib
+S .
+FLG -w @a-4-29-40-41-42-44-45-48-58-59-60-40 -strict-sequence -strict-formats -short-paths -keep-locs
