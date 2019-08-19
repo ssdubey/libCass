@@ -32,8 +32,8 @@ let create_cluster hosts =
 		cluster
 
 let execute_query session query = 
-	let rc = cstub_execute_query session query in ();
-	rc
+	cstub_execute_query session query
+	
 
 let print_error future =
 	cstub_cass_future_error_message future
@@ -50,10 +50,10 @@ let _ =
   	let uuid_gen = ml_cass_uuid_gen_new () in 
  
   	let response = connect_session sess cluster in
-  		if response == 2 then begin
+  		(* if response == 2 then begin
   			ml_cass_cluster_free cluster;
   			ml_cass_session_free sess
-  		end;
+  		end; *)
 		
 	execute_query sess "CREATE KEYSPACE examples WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '3' }";
   	execute_query sess "CREATE TABLE examples.tuples (id timeuuid, item frozen<tuple<text, bigint>>, PRIMARY KEY(id))";

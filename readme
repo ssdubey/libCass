@@ -1,0 +1,32 @@
+This document explains the arrangement and running of c based library files along with ocaml code using ocamlopt. 
+
+lib folder contains the c driver code. 
+We were trying to get a 'c stub in ml' in lib directory but that is not done yet. 
+
+src directory contains the source file which will use the driver. we are trying three different types of implementation: with ctype (using foreign), w/o ctype (using external), dummy interface or ml interface which just calls the c functions without doing anything and all the logic is written in c.
+ml file in src would contain externals and function calls. 
+
+
+lib directory contains cpp driver which has cmake tool. 'ccmake .' can be used to generate .so or .a file as needed. 
+Another thing in lib directory is cstub which used in the approach of using external.
+
+COMPILATION:
+ocamlopt -cclib ./lib/cpp-driver/libcassandra.so ./src/cass.ml
+
+This statement is executed from the parent directory of src and lib.
+-cclib <filename> tells the linker to link a file. It takes .so file.
+passing .o file does not say that is cannot understand what file is passed but it gives the error as undefined references to all the funtions in c.
+
+The command will create an object file which can be simply run to get the output.
+
+
+
+-------------------------------------------------
+using ctypes and ocamlopt:
+ocamlfind ocamlopt -cclib ./lib/cpp-driver/libcassandra.so ./src/ctypecass.ml -o cass -linkpkg -package ctypes -package posix-types -package ctypes.foreign
+
+without ctype:
+ocamlfind ocamlopt -cclib ./lib/cpp-driver/libcassandra.so ./src/wo_ctype/cass.ml  ./lib/cstub/cstub.c -o cass
+
+using ml interface:
+ocamlfind ocamlopt -cclib ./lib/cpp-driver/libcassandra.so ./src/ml_interface/cass.ml  ./lib/cstub/cstub.c -o cass
